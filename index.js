@@ -164,7 +164,11 @@ client.once('ready', async () => {
 
   const mainUi = `
 
-                          ${purple}akashsuu${white}
+                 ${purple}  #####  ##  ##  #####   ##### ##  ##  ##### ##  ## ##  ##${white}
+                 ${purple} ##   ## ## ##  ##   ## ##     ##  ## ##     ##  ## ##  ##${white}
+                 ${purple} ####### ####   #######  ####  ######  ####  ##  ## ##  ##${white}
+                 ${purple} ##   ## ## ##  ##   ##     ## ##  ##     ## ##  ## ##  ##${white}
+                 ${purple} ##   ## ##  ## ##   ## #####  ##  ## #####   ####   #### ${white}
 
                           ${purple}akashsuu SELFBOT${white} ${muted}// JS EDITION${white}
                           ${muted}created and developed by${white} ${purple}akashsuu${white}

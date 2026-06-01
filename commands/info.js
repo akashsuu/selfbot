@@ -206,36 +206,28 @@ commands.push({
     const tokens = loadTokens();
     const uptime = getUptime();
     
-    // Resolve theme for user
     const accent = colors.lightMagenta;
     const reset = colors.reset;
     const white = colors.white;
     const purple = colors.lightMagenta;
     
-    const botUser = `Welcome : ${client.user.tag.slice(0, 25).padEnd(25)}`;
-    const botPrefix = `Prefix  : .                        `;
-    const version = `Version : JS Dev                   `;
-    const serverCount = `Servers : ${String(client.guilds.cache.size).padEnd(25)}`;
-    const friendCount = `Friends : ${String(getFriendCount(client)).padEnd(25)}`;
-    const tokenCount = `Tokens  : ${String(tokens.length).padEnd(25)}`;
-    const uptimeStr = `Uptime  : ${uptime.padEnd(25)}`;
-    
-    const boxWidth = 35;
-    const borderLine = "═".repeat(boxWidth + 2);
-    
     await message.channel.send(`\`\`\`ansi
-                                            ${purple}╔═╗╔═╗╔═╗ ╦ ╦╔═╗╔╦╗╔╦╗╔═╗  ╔═╗╔═╗╦  ╔═╗╔╗ ╔═╗╔╦╗
-                                            ${purple}║  ║ ║║═╬╗║ ║║╣  ║  ║ ║╣   ╚═╗║╣ ║  ╠╣ ╠╩╗║ ║ ║ 
-                                             ${white}╚═╝╚═╝╚═╝╚╚═╝╚═╝ ╩  ╩ ╚═╝  ╚═╝╚═╝╩═╝╚  ╚═╝╚═╝ ╩  ${purple}Created and developed by ${white}akashsuu
-                                            ${purple}╔${borderLine}╗
-                                            ${purple}║ ${white}Welcome : ${accent}${client.user.tag.slice(0,25).padEnd(25)} ${purple}║
-                                            ${purple}║ ${white}Prefix  : ${accent}.${"".padEnd(24)} ${purple}║
-                                            ${purple}║ ${white}Version : ${accent}JS Dev${"".padEnd(19)} ${purple}║
-                                            ${purple}║ ${white}Servers : ${accent}${String(client.guilds.cache.size).padEnd(25)} ${purple}║
-                                            ${purple}║ ${white}Friends : ${accent}${String(getFriendCount(client)).padEnd(25)} ${purple}║
-                                            ${purple}║ ${white}Tokens  : ${accent}${String(tokens.length).padEnd(25)} ${purple}║  
-                                            ${purple}║ ${white}Uptime  : ${accent}${uptime.padEnd(25)} ${purple}║
-                                            ${purple}╚${borderLine}╝
+              ${purple}   ___    _  __   ___    ____  _   _  ____  _   _  _   _${white}
+              ${purple}  / _ \\  | |/ /  / _ \\  / ___|| | | |/ ___|| | | || | | |${white}
+              ${purple} / /_\\ \\ | ' /  / /_\\ \\ \\___ \\| |_| |\\___ \\| | | || | | |${white}
+              ${purple}|  _  | | . \\  |  _  |  ___) |  _  | ___) | |_| || |_| |${white}
+              ${purple}|_| |_| |_|\\_\\ |_| |_| |____/|_| |_||____/ \\___/  \\___/ ${white}
+
+              ${purple}akashsuu selfbot${white}
+              ${white}created and developed by ${accent}akashsuu${white}
+
+              ${purple}>${white} welcome ${accent}${client.user.tag}${white}
+              ${purple}>${white} prefix  ${accent}.${white}
+              ${purple}>${white} version ${accent}JS Dev${white}
+              ${purple}>${white} servers ${accent}${client.guilds.cache.size}${white}
+              ${purple}>${white} friends ${accent}${getFriendCount(client)}${white}
+              ${purple}>${white} tokens  ${accent}${tokens.length}${white}
+              ${purple}>${white} uptime  ${accent}${uptime}${white}
     ${reset}\`\`\``);
   }
 });

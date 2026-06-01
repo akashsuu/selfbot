@@ -69,9 +69,13 @@ export async function showStartupAnimation() {
   const p1 = colors.lightMagenta;
 
   const asciiArt = `${qqq}
-                         akashsuu
-                         selfbot loading
-${white}                         cmd + termux ready${qqq}`;
+                 #####  ##  ##  #####   ##### ##  ##  ##### ##  ## ##  ##
+                ##   ## ## ##  ##   ## ##     ##  ## ##     ##  ## ##  ##
+                ####### ####   #######  ####  ######  ####  ##  ## ##  ##
+                ##   ## ## ##  ##   ##     ## ##  ##     ## ##  ## ##  ##
+                ##   ## ##  ## ##   ## #####  ##  ## #####   ####   ####
+${white}                         selfbot loading
+                         cmd + termux ready${qqq}`;
   const snow = ['*', '.', '+', ':'];
   const titles = ["akashsuu", "purple-white", "akashsuu", "purple-white"];
   const barLength = 20;

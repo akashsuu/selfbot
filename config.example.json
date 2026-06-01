@@ -1,6 +1,14 @@
 {
-  "token": "YOUR TOKEN",
-  "commandUsers": ["USER_ID_1", "USER_ID_2"],
+  "token": "",
+  "commandUsers": ["806113872620421140"],
+  "musicNodes": [
+    {
+      "name": "serenetia",
+      "url": "lavalinkv4.serenetia.com:443",
+      "auth": "https://dsc.gg/ajidevserver",
+      "secure": true
+    }
+  ],
   "RpcClientID": "RPC CLIENT ID",
   "Rpcstate": "Playing akashsuu Selfbot",
   "Rpcdetails": "RPC DETAILS",

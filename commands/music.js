@@ -1,16 +1,82 @@
+import fs from 'fs';
+
 const commands = [];
 
-const NODES = [
+const DEFAULT_NODES = [
   {
     name: 'serenetia',
     url: 'lavalinkv4.serenetia.com:443',
-    auth: 'https://seretia.link/discord',
+    auth: 'https://dsc.gg/ajidevserver',
     secure: true
   }
 ];
 
 let kazagumo;
 let loading;
+let musicNodeReady = false;
+
+function loadMusicNodes() {
+  try {
+    const config = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+    if (Array.isArray(config.musicNodes) && config.musicNodes.length > 0) {
+      return config.musicNodes;
+    }
+  } catch {}
+
+  return DEFAULT_NODES;
+}
+
+function createSelfbotConnector(Connectors, client) {
+  return new (class SelfbotDiscordJSConnector extends Connectors.DiscordJS {
+    listen(nodes) {
+      let started = false;
+      const start = () => {
+        if (started) return;
+        started = true;
+        this.ready(nodes);
+      };
+
+      if (this.client?.user?.id) start();
+      else {
+        this.client.once('ready', start);
+        this.client.once('clientReady', start);
+      }
+
+      this.client.on('raw', packet => this.raw(packet));
+    }
+  })(client);
+}
+
+function waitForMusicNode(music, timeout = 30000) {
+  if (musicNodeReady) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('Music node did not connect. Try again in a moment or change the Lavalink node.'));
+    }, timeout);
+
+    const onReady = () => {
+      musicNodeReady = true;
+      cleanup();
+      resolve();
+    };
+
+    const onError = (_name, err) => {
+      cleanup();
+      reject(new Error(err?.message || 'Music node connection failed'));
+    };
+
+    const cleanup = () => {
+      clearTimeout(timer);
+      music.shoukaku.off('ready', onReady);
+      music.shoukaku.off('error', onError);
+    };
+
+    music.shoukaku.once('ready', onReady);
+    music.shoukaku.once('error', onError);
+  });
+}
 
 function msToTime(ms = 0) {
   const totalSeconds = Math.floor(ms / 1000);
@@ -54,13 +120,23 @@ async function getMusic(client) {
           if (guild?.shard) guild.shard.send(payload);
         }
       },
-      new Connectors.DiscordJS(client),
-      NODES
+      createSelfbotConnector(Connectors, client),
+      loadMusicNodes()
     );
 
-    music.shoukaku.on('ready', name => console.log(`Music node ready: ${name}`));
+    music.shoukaku.on('ready', name => {
+      musicNodeReady = true;
+      console.log(`Music node ready: ${name}`);
+    });
+    music.shoukaku.on('close', name => {
+      musicNodeReady = false;
+      console.warn(`Music node closed: ${name}`);
+    });
     music.shoukaku.on('error', (name, err) => console.error(`Music node ${name} error: ${err.message}`));
-    music.shoukaku.on('disconnect', name => console.warn(`Music node disconnected: ${name}`));
+    music.shoukaku.on('disconnect', name => {
+      musicNodeReady = false;
+      console.warn(`Music node disconnected: ${name}`);
+    });
 
     music.on('playerEnd', player => {
       if (player.queue.length) player.play();
@@ -93,33 +169,38 @@ commands.push({
     let music;
     try {
       music = await getMusic(client);
+      await waitForMusicNode(music);
     } catch (err) {
-      return message.channel.send(`\`\`\`Music system not ready: ${err.message}\`\`\``);
+      return message.channel.send(`\`\`\`${err.message}\`\`\``);
     }
 
-    let player = getPlayer(message.guild.id);
-    if (!player) {
-      player = await music.createPlayer({
-        guildId: message.guild.id,
-        voiceId: voiceChannel.id,
-        textId: message.channel.id,
-        deaf: true
-      });
+    try {
+      let player = getPlayer(message.guild.id);
+      if (!player) {
+        player = await music.createPlayer({
+          guildId: message.guild.id,
+          voiceId: voiceChannel.id,
+          textId: message.channel.id,
+          deaf: true
+        });
+      }
+
+      const result = await music.search(query, { requester: message.author });
+      if (!result?.tracks?.length) return message.channel.send('```No results found.```');
+
+      if (result.type === 'PLAYLIST') {
+        for (const track of result.tracks) player.queue.add(track);
+        await message.channel.send(`\`\`\`Added playlist: ${result.playlistName}\nTracks: ${result.tracks.length}\`\`\``);
+      } else {
+        const track = result.tracks[0];
+        player.queue.add(track);
+        await message.channel.send(`\`\`\`Added: ${plainTrack(track)}\`\`\``);
+      }
+
+      if (!player.playing && !player.paused) player.play();
+    } catch (err) {
+      return message.channel.send(`\`\`\`Music error: ${err.message}\`\`\``);
     }
-
-    const result = await music.search(query, { requester: message.author });
-    if (!result?.tracks?.length) return message.channel.send('```No results found.```');
-
-    if (result.type === 'PLAYLIST') {
-      for (const track of result.tracks) player.queue.add(track);
-      await message.channel.send(`\`\`\`Added playlist: ${result.playlistName}\nTracks: ${result.tracks.length}\`\`\``);
-    } else {
-      const track = result.tracks[0];
-      player.queue.add(track);
-      await message.channel.send(`\`\`\`Added: ${plainTrack(track)}\`\`\``);
-    }
-
-    if (!player.playing && !player.paused) player.play();
   }
 });
 
