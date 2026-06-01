@@ -39,6 +39,157 @@ function getFriendCount(client) {
 
 const commands = [];
 
+const helpSections = {
+  tokens: {
+    title: 'Token Management',
+    commands: [
+      '.addtoken <token> - Add a secondary token',
+      '.removetoken <token> - Remove a secondary token',
+      '.listtokens / .tok - Show saved secondary tokens',
+      '.cleartoken - Clear secondary tokens',
+      '.token add/remove/list/clear - Token shortcut menu',
+      '.tjoin <invite> <count> - Join tokens to a server'
+    ]
+  },
+  spam: {
+    title: 'Spam And Loops',
+    commands: [
+      '.spam <message> - Repeat a message until stopped',
+      '.spamoff - Stop spam',
+      '.repeat start <message> - Auto repeat a message',
+      '.repeat stop - Stop auto repeat',
+      '.repeat delay <seconds> - Set repeat speed',
+      '.outlast <user> / .stopoutlast - Outlast loop',
+      '.multilast <user> / .stopmultilast - Multi-token outlast',
+      '.mping / .mpingoff - Mass ping loop',
+      '.invis / .invisoff - Invisible text loop'
+    ]
+  },
+  profile: {
+    title: 'Profile',
+    commands: [
+      '.setname <name> - Change display name',
+      '.setpfp <url or attachment> - Change avatar',
+      '.setbanner <url or attachment> - Change banner',
+      '.setbio <text> - Change bio',
+      '.setpronoun <text> - Change pronouns',
+      '.stealpfp <user> - Copy user avatar',
+      '.stealbanner <user> - Copy user banner',
+      '.stealbio <user> - Copy user bio',
+      '.copyprofile <user> - Copy available profile fields',
+      '.rstatus text1 | text2 - Rotate status',
+      '.stopstatus / .rstatusend - Stop status rotation'
+    ]
+  },
+  media: {
+    title: 'Anime And Media',
+    commands: [
+      '.kiss/.hug/.pat/.slap <user> - Anime action GIF',
+      '.wink/.dance/.cry/.smile - Solo anime action',
+      '.hentai/.maid/.oppai/.uniform - Image commands',
+      '.imgdump - Dump images from channel',
+      '.gifdump - Dump GIFs from channel',
+      '.mp4dump / .movdump - Dump videos from channel'
+    ]
+  },
+  utility: {
+    title: 'Utility',
+    commands: [
+      '.say <message> - Send/edit message',
+      '.say <token_index> <message> - Send from secondary token',
+      '.mimic <user> - Mimic a user',
+      '.mimicoff - Stop mimic',
+      '.nickname <name> - Change server nickname',
+      '.bsearch <query> - Search in browser',
+      '.roblox <username> - Lookup Roblox user',
+      '.opencalc / .openpad - Open Windows tools',
+      '.dfolder <name> - Create Desktop folder',
+      '.cleartemp - Clear temp files'
+    ]
+  },
+  protection: {
+    title: 'Protection',
+    commands: [
+      '.detection on/off - Toggle raid detection',
+      '.setpunishment ban/kick/timeout - Set punishment',
+      '.swhitelist <user> - Add whitelist user',
+      '.sunwhitelist <user> - Remove whitelist user',
+      '.softban <user> - Softban user',
+      '.hardban <user> - Hardban user',
+      '.unhardban <user> - Remove hardban',
+      '.ghostban <user_id> - Add ghostban',
+      '.banlist - Show ban list',
+      '.protectionstats - Show protection settings',
+      '.antigcspam - Group chat protection menu'
+    ]
+  },
+  voice: {
+    title: 'Voice',
+    commands: [
+      '.vcjoin stable <channel_id> - Join voice channel',
+      '.vcjoin leave - Leave voice channel',
+      '.vcmulti / .multivc <channel_id> - Join secondary tokens',
+      '.vcend - Disconnect secondary voice clients'
+    ]
+  },
+  auto: {
+    title: 'Auto Responses',
+    commands: [
+      '.ronmessage add <text> <emoji> - Auto-react to text',
+      '.ronmessage list/remove/clear/on/off - Manage reactions',
+      '.sonmessage add <text> <reply> - Auto-reply to text',
+      '.sonmessage list/remove/clear/on/off - Manage replies',
+      '.eonmessage add <text> <edit> - Auto-edit matching messages',
+      '.eonmessage list/remove/clear/on/off - Manage edits',
+      '.ladder start/stop - Auto ladder loop',
+      '.ladder add/remove/list/clear/delay/status - Manage ladder'
+    ]
+  }
+};
+
+function buildHelp(category) {
+  const key = category?.toLowerCase();
+  if (key && helpSections[key]) {
+    const section = helpSections[key];
+    return [
+      `${section.title}`,
+      'Prefix: .',
+      '',
+      ...section.commands,
+      '',
+      'Tip: Use .help to go back to the category list.'
+    ].join('\n');
+  }
+
+  const categories = Object.entries(helpSections)
+    .map(([name, section]) => `.help ${name.padEnd(10)} - ${section.title}`)
+    .join('\n');
+
+  return [
+    'akashsuu Selfbot Help',
+    'Prefix: .',
+    'Created and developed by akashsuu',
+    '',
+    'Main commands:',
+    '.info              - Bot status',
+    '.help <category>   - Show commands in a category',
+    '.theme             - Change help theme',
+    '',
+    'Categories:',
+    categories,
+    '',
+    'Examples:',
+    '.help tokens',
+    '.help spam',
+    '.repeat start hello',
+    '.setbio hello world'
+  ].join('\n');
+}
+
+async function sendHelp(message, args = []) {
+  await message.channel.send(`\`\`\`\n${buildHelp(args[0])}\n\`\`\``);
+}
+
 // 1. INFO command
 commands.push({
   name: 'info',
@@ -86,30 +237,7 @@ commands.push({
   name: 'menu',
   aliases: ['help', 'commands'],
   execute: async (message, args, client) => {
-    const blue = colors.blue;
-    const red = colors.red;
-    const magenta = colors.magenta;
-    const white = colors.white;
-    const reset = colors.reset;
-    
-    await message.channel.send(`\`\`\`ansi
-${blue}────────────Dont RUN────────────
-${red}akashsuu ${blue}Selfbot JS.
-${red}Created and developed by ${blue}akashsuu
-${blue}────────────Dont RUN────────────
-
-${magenta}[ ${white}.p1 ${magenta}] ${white}Multi Token Management & Autoresponse
-${blue}[ ${white}.p2 ${blue}] ${white}Spam & Message Formatting
-${magenta}[ ${white}.p3 ${magenta}] ${white}Reaction & server/user info 
-${blue}[ ${white}.p4 ${blue}] ${white}Utility & User Interaction
-${magenta}[ ${white}.p5 ${magenta}] ${white}Message & Server Management
-${blue}[ ${white}.p6 ${blue}] ${white}Backup & Friendly Actions
-${magenta}[ ${white}.p7 ${magenta}] ${white}Playfull action & Agressive actions
-${blue}[ ${white}.p8 ${blue}] ${white}Emoji management, Antinuke & server/group action
-${magenta}[ ${white}.p9 ${magenta}] ${white}Ping response & Reaction System
-${blue}[ ${white}.p10 ${blue}] ${white}AFK check & User control
-${magenta}[ ${white}.menu2 ${magenta}] ${white}For Next Page
-\`\`\``);
+    await sendHelp(message, args);
   }
 });
 
@@ -117,30 +245,7 @@ ${magenta}[ ${white}.menu2 ${magenta}] ${white}For Next Page
 commands.push({
   name: 'menu2',
   execute: async (message, args, client) => {
-    const blue = colors.blue;
-    const red = colors.red;
-    const magenta = colors.magenta;
-    const white = colors.white;
-    const reset = colors.reset;
-    
-    await message.channel.send(`\`\`\`ansi
-${blue}────────────Dont RUN────────────
-${red}akashsuu ${blue}Selfbot JS.
-${red}Created and developed by ${blue}akashsuu
-${blue}────────────Dont RUN────────────
-
-${magenta}[ ${white}.p11 ${magenta}] ${white}Message control and Nuking
-${blue}[ ${white}.p12 ${blue}] ${white}More Nuking & Spotify Control
-${magenta}[ ${white}.p13 ${magenta}] ${white}Profile customization & bio/status management
-${blue}[ ${white}.p14 ${blue}] ${white}Name/Pronounce & Server voice management
-${magenta}[ ${white}.p15 ${magenta}] ${white}Message Reaction & Response System
-${blue}[ ${white}.p16 ${blue}] ${white}Message Edit System & Notification Systems
-${magenta}[ ${white}.p17 ${magenta}] ${white}Screenshot Management & Windows Utilities
-${blue}[ ${white}.p18 ${blue}] ${white}Social Media Search & NSFW Content 
-${magenta}[ ${white}.p19 ${magenta}] ${white}Main Commands & Utility Commands
-${blue}[ ${white}.p20 ${blue}] ${white}Token Utility & Friend & Block Utility
-${magenta}[ ${white}.menu3 ${magenta}] ${white}For Next Page
-\`\`\``);
+    await sendHelp(message, args);
   }
 });
 
@@ -148,28 +253,7 @@ ${magenta}[ ${white}.menu3 ${magenta}] ${white}For Next Page
 commands.push({
   name: 'menu3',
   execute: async (message, args, client) => {
-    const blue = colors.blue;
-    const red = colors.red;
-    const magenta = colors.magenta;
-    const white = colors.white;
-    const reset = colors.reset;
-    
-    await message.channel.send(`\`\`\`ansi
-${blue}────────────Dont RUN────────────
-${red}akashsuu ${blue}Selfbot JS.
-${red}Created and developed by ${blue}akashsuu
-${blue}────────────Dont RUN────────────
-${magenta}[ ${white}.p21 ${magenta}] ${white}Auto Press Commands & Auto Kill Commands
-${blue}[ ${white}.p22 ${blue}] ${white}Manual Mode Commands & Multi Press & Random
-${magenta}[ ${white}.p23 ${magenta}] ${white}Multi/Vc Commands & Auto Multi Commands
-${blue}[ ${white}.p24 ${blue}] ${white}Auto Leave Systems & Autorepeat
-${magenta}[ ${white}.p25 ${magenta}] ${white}Anti GC spam 
-${blue}[ ${white}.p26 ${blue}] ${white}Anti GC Spam Advanced & Rotate Systems
-${magenta}[ ${white}.p27 ${magenta}] ${white}Message Sniper System & Anti LastWord & Random
-${blue}[ ${white}.p28 ${blue}] ${white}Server Edit
-${magenta}[ ${white}.p29 ${magenta}] ${white}Image Dumping & Guild & Token Management
-${blue}[ ${white}.menu ${blue}] ${white}Back To Main Menu
-\`\`\``);
+    await sendHelp(message, args);
   }
 });
 
