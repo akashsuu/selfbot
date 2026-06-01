@@ -146,36 +146,30 @@ async function initEvents() {
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
-  // Render the pretty console box UI
-  const boxWidth = 35;
-  const borderLine = "═".repeat(boxWidth + 2);
+  // Render the akashsuu ready console UI.
   const purple = colors.lightMagenta;
   const white = colors.white;
-  const botUser = `${white}Welcome : ${purple}${client.user.tag.slice(0, 25).padEnd(25)}`;
-  const botPrefix = `${white}Prefix  : ${purple}.                        `;
-  const version = `${white}Version : ${purple}JS V1.1.6 Host           `;
-  const serverCount = `${white}Servers : ${purple}${String(client.guilds.cache.size).padEnd(25)}`;
-  const friendCount = `${white}Friends : ${purple}${String(getFriendCount(client)).padEnd(25)}`;
+  const muted = colors.lightGray || colors.gray || white;
+  const botUser = client.user.tag;
+  const serverCount = String(client.guilds.cache.size);
+  const friendCount = String(getFriendCount(client));
 
   const mainUi = `
-                 ${purple} █████╗ ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██╗   ██╗██╗   ██╗${white}
-                 ${purple}██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██║  ██║██╔════╝██║   ██║██║   ██║${white}
-                 ${purple}███████║█████╔╝ ███████║███████╗███████║███████╗██║   ██║██║   ██║${white}
-                 ${purple}██╔══██║██╔═██╗ ██╔══██║╚════██║██╔══██║╚════██║██║   ██║██║   ██║${white}
-                 ${purple}██║  ██║██║  ██╗██║  ██║███████║██║  ██║███████║╚██████╔╝╚██████╔╝${white}
-                 ${purple}╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ${white}
 
-                                              ${purple}akashsuu SELFBOT (JS EDITION)${white}
-                                              ${purple}NODE.JS CLIENT${white}
-                                              ${purple}CREATED AND DEVELOPED BY akashsuu${white}
+                         ${purple}    A     K   K     A     SSSS  H   H  SSSS  U   U  U   U${white}
+                         ${purple}   A A    K  K     A A   S      H   H  S     U   U  U   U${white}
+                         ${purple}  AAAAA   KKK     AAAAA   SSS   HHHHH   SSS  U   U  U   U${white}
+                         ${purple} A     A  K  K   A     A     S  H   H     S  U   U  U   U${white}
+                         ${purple} A     A  K   K  A     A SSSS   H   H SSSS    UUU    UUU ${white}
 
-                                            ${purple}╔${borderLine}╗
-                                            ${purple}║ ${botUser} ${purple}║
-                                            ${purple}║ ${botPrefix} ${purple}║
-                                            ${purple}║ ${version} ${purple}║
-                                            ${purple}║ ${serverCount} ${purple}║
-                                            ${purple}║ ${friendCount} ${purple}║
-                                            ${purple}╚${borderLine}╝${white}
+                          ${purple}akashsuu SELFBOT${white} ${muted}// JS EDITION${white}
+                          ${muted}created and developed by${white} ${purple}akashsuu${white}
+
+                          ${purple}>${white} welcome   ${muted}:${white} ${purple}${botUser}${white}
+                          ${purple}>${white} prefix    ${muted}:${white} ${purple}.${white}
+                          ${purple}>${white} version   ${muted}:${white} ${purple}JS V1.1.6 Host${white}
+                          ${purple}>${white} servers   ${muted}:${white} ${purple}${serverCount}${white}
+                          ${purple}>${white} friends   ${muted}:${white} ${purple}${friendCount}${white}
   `;
   console.log(mainUi);
 });
