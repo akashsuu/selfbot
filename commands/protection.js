@@ -255,11 +255,11 @@ commands.push({
   execute: async (message, args, client) => {
     await message.channel.send(`\`\`\`ansi
 \x1b[35mShield Protection Stats:
-\x1b[34mRaid Detection: \x1b[37m${detectionEnabled ? '✅ ON' : '❌ OFF'}
-\x1b[34mPunishment:     \x1b[37m${protectionSettings.punishment}
-\x1b[34mWhitelisted:    \x1b[37m${whitelist.whitelist.length} users
-\x1b[34mHardbanned:     \x1b[37m${protectionSettings.hard_banned.length} users
-\x1b[34mAnti-GC Spam:   \x1b[37m${gcConfig.enabled ? '✅ ON' : '❌ OFF'}
+\x1b[335mRaid Detection: \x1b[37m${detectionEnabled ? '✅ ON' : '❌ OFF'}
+\x1b[335mPunishment:     \x1b[37m${protectionSettings.punishment}
+\x1b[335mWhitelisted:    \x1b[37m${whitelist.whitelist.length} users
+\x1b[335mHardbanned:     \x1b[37m${protectionSettings.hard_banned.length} users
+\x1b[335mAnti-GC Spam:   \x1b[37m${gcConfig.enabled ? '✅ ON' : '❌ OFF'}
 \`\`\``);
   }
 });

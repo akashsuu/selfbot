@@ -99,7 +99,7 @@ commands.push({
     exec('calc', (err) => {
       if (err) message.channel.send(`\`\`\`Error: ${err.message}\`\`\``);
     });
-    await message.channel.send("```ansi\n\x1b[34mOpened Windows Calculator.\x1b[0m```");
+    await message.channel.send("```ansi\n\x1b[335mOpened Windows Calculator.\x1b[0m```");
   }
 });
 
@@ -112,7 +112,7 @@ commands.push({
     exec('notepad', (err) => {
       if (err) message.channel.send(`\`\`\`Error: ${err.message}\`\`\``);
     });
-    await message.channel.send("```ansi\n\x1b[34mOpened Windows Notepad.\x1b[0m```");
+    await message.channel.send("```ansi\n\x1b[335mOpened Windows Notepad.\x1b[0m```");
   }
 });
 
@@ -124,7 +124,7 @@ commands.push({
     const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     
     await open(url);
-    await message.channel.send(`\`\`\`ansi\n\x1b[34mSearching for ${query} using your default browser.\x1b[0m\`\`\``);
+    await message.channel.send(`\`\`\`ansi\n\x1b[335mSearching for ${query} using your default browser.\x1b[0m\`\`\``);
   }
 });
 
@@ -138,11 +138,11 @@ commands.push({
     const folderPath = path.join(desktopPath, name);
     
     if (fs.existsSync(folderPath)) {
-      await message.channel.send(`\`\`\`ansi\n\x1b[31mThe folder \x1b[34m${name}\x1b[31m already exists.\x1b[0m\`\`\``);
+      await message.channel.send(`\`\`\`ansi\n\x1b[335mThe folder \x1b[335m${name}\x1b[335m already exists.\x1b[0m\`\`\``);
     } else {
       try {
         fs.mkdirSync(folderPath);
-        await message.channel.send(`\`\`\`ansi\n\x1b[34mFolder ${name} has been created on your Desktop.\x1b[0m\`\`\``);
+        await message.channel.send(`\`\`\`ansi\n\x1b[335mFolder ${name} has been created on your Desktop.\x1b[0m\`\`\``);
       } catch (err) {
         await message.channel.send(`\`\`\`Error creating folder: ${err.message}\`\`\``);
       }
@@ -171,7 +171,7 @@ commands.push({
           deleted++;
         } catch {}
       }
-      await msg.edit(`\`\`\`ansi\n\x1b[32mCleared ${deleted}/${files.length} items from Temp folder successfully!\x1b[0m\`\`\``);
+      await msg.edit(`\`\`\`ansi\n\x1b[335mCleared ${deleted}/${files.length} items from Temp folder successfully!\x1b[0m\`\`\``);
     } catch (err) {
       await msg.edit(`\`\`\`Error clearing temp folder: ${err.message}\`\`\``);
     }
@@ -194,7 +194,7 @@ for (const [cmd, baseUrl] of Object.entries(socialMedia)) {
       if (!search) return message.channel.send("```Please specify a search query.```");
       const url = `${baseUrl}${encodeURIComponent(search)}`;
       await open(url);
-      await message.channel.send(`\`\`\`ansi\n\x1b[34m${cmd.slice(1).toUpperCase()} search for \x1b[31m${search}\x1b[34m has been opened.\x1b[0m\`\`\``);
+      await message.channel.send(`\`\`\`ansi\n\x1b[335m${cmd.slice(1).toUpperCase()} search for \x1b[335m${search}\x1b[335m has been opened.\x1b[0m\`\`\``);
     }
   });
 }
@@ -227,11 +227,11 @@ commands.push({
       
       await message.channel.send(`\`\`\`ansi
 \x1b[35mRoblox User Info:
-\x1b[34mUsername:     \x1b[37m${username}
-\x1b[34mDisplay Name: \x1b[37m${displayName}
-\x1b[34mUser ID:      \x1b[37m${userId}
-\x1b[34mCreated Date: \x1b[37m${createdDate}
-\x1b[34mAbout Me:     \x1b[37m${bio.slice(0, 150)}
+\x1b[335mUsername:     \x1b[37m${username}
+\x1b[335mDisplay Name: \x1b[37m${displayName}
+\x1b[335mUser ID:      \x1b[37m${userId}
+\x1b[335mCreated Date: \x1b[37m${createdDate}
+\x1b[335mAbout Me:     \x1b[37m${bio.slice(0, 150)}
 \`\`\``);
     } catch (err) {
       await message.channel.send(`\`\`\`Error fetching Roblox user: ${err.message}\`\`\``);

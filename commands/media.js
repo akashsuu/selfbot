@@ -122,7 +122,7 @@ async function dumpAttachments(message, limit, typeFilter) {
     }
 
     const output = urls.join('\n');
-    await statusMsg.edit(`\`\`\`ansi\n\x1b[32mDumped ${urls.length} files:\x1b[0m\`\`\n${output.slice(0, 1900)}`);
+    await statusMsg.edit(`\`\`\`ansi\n\x1b[335mDumped ${urls.length} files:\x1b[0m\`\`\n${output.slice(0, 1900)}`);
   } catch (err) {
     await statusMsg.edit(`\`\`\`Failed to dump: ${err.message}\`\`\``);
   }

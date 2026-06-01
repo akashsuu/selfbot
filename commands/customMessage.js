@@ -69,7 +69,7 @@ commands.push({
       const entries = Object.entries(ronData);
       if (entries.length === 0) return message.channel.send("```No ronmessage bindings found.```");
       const list = entries.map(([trig, d]) => `Message: "${trig}" | Reaction: ${d.reaction} | Status: ${d.enabled ? 'Enabled' : 'Disabled'}`).join('\n');
-      await message.channel.send(`\`\`\`ansi\n\x1b[34mCurrent ronmessage reactions:\n${list}\x1b[0m\`\`\``);
+      await message.channel.send(`\`\`\`ansi\n\x1b[335mCurrent ronmessage reactions:\n${list}\x1b[0m\`\`\``);
     }
     else {
       await message.channel.send(`\`\`\`ansi
@@ -132,7 +132,7 @@ commands.push({
       const entries = Object.entries(sonData);
       if (entries.length === 0) return message.channel.send("```No sendonmessage bindings found.```");
       const list = entries.map(([trig, d]) => `Message: "${trig}" | Response: "${d.response}" | Status: ${d.enabled ? 'Enabled' : 'Disabled'}`).join('\n');
-      await message.channel.send(`\`\`\`ansi\n\x1b[34mCurrent sendonmessage replies:\n${list}\x1b[0m\`\`\``);
+      await message.channel.send(`\`\`\`ansi\n\x1b[335mCurrent sendonmessage replies:\n${list}\x1b[0m\`\`\``);
     }
     else {
       await message.channel.send(`\`\`\`ansi
@@ -194,7 +194,7 @@ commands.push({
       const entries = Object.entries(eonData);
       if (entries.length === 0) return message.channel.send("```No eonmessage bindings found.```");
       const list = entries.map(([trig, d]) => `Message: "${trig}" | Edit: "${d.edited_message}" | Status: ${d.enabled ? 'Enabled' : 'Disabled'}`).join('\n');
-      await message.channel.send(`\`\`\`ansi\n\x1b[34mCurrent eonmessage edits:\n${list}\x1b[0m\`\`\``);
+      await message.channel.send(`\`\`\`ansi\n\x1b[335mCurrent eonmessage edits:\n${list}\x1b[0m\`\`\``);
     }
     else {
       await message.channel.send(`\`\`\`ansi

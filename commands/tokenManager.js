@@ -19,19 +19,19 @@ commands.push({
     // Delete message to hide token if permissions allow
     try { await message.delete(); } catch {}
 
-    const statusMsg = await message.channel.send("```ansi\n\x1b[33mValidating token...\\x1b[0m```");
+    const statusMsg = await message.channel.send("```ansi\n\x1b[335mValidating token...\\x1b[0m```");
     const result = await validateToken(rawToken);
 
     if (result.valid) {
       const tokens = loadTokens();
       if (tokens.includes(rawToken)) {
-        return statusMsg.edit("```ansi\n\x1b[33mToken already exists in token.txt\x1b[0m```");
+        return statusMsg.edit("```ansi\n\x1b[335mToken already exists in token.txt\x1b[0m```");
       }
       tokens.push(rawToken);
       fs.writeFileSync(tokenFilePath, tokens.join('\n') + '\n');
-      await statusMsg.edit(`\`\`\`ansi\n\x1b[32mToken added successfully! User: ${result.username}\x1b[0m\`\`\``);
+      await statusMsg.edit(`\`\`\`ansi\n\x1b[335mToken added successfully! User: ${result.username}\x1b[0m\`\`\``);
     } else {
-      await statusMsg.edit(`\`\`\`ansi\n\x1b[31mInvalid token! Error: ${result.error}\x1b[0m\`\`\``);
+      await statusMsg.edit(`\`\`\`ansi\n\x1b[335mInvalid token! Error: ${result.error}\x1b[0m\`\`\``);
     }
   }
 });
@@ -51,9 +51,9 @@ commands.push({
     if (idx !== -1) {
       tokens.splice(idx, 1);
       fs.writeFileSync(tokenFilePath, tokens.join('\n') + (tokens.length > 0 ? '\n' : ''));
-      await message.channel.send("```ansi\n\x1b[32mToken removed successfully!\x1b[0m```");
+      await message.channel.send("```ansi\n\x1b[335mToken removed successfully!\x1b[0m```");
     } else {
-      await message.channel.send("```ansi\n\x1b[31mToken not found in token.txt!\x1b[0m```");
+      await message.channel.send("```ansi\n\x1b[335mToken not found in token.txt!\x1b[0m```");
     }
   }
 });
@@ -67,11 +67,11 @@ commands.push({
 
     const tokens = loadTokens();
     if (tokens.length === 0) {
-      return message.channel.send("```ansi\n\x1b[33mNo tokens found in token.txt!\x1b[0m```");
+      return message.channel.send("```ansi\n\x1b[335mNo tokens found in token.txt!\x1b[0m```");
     }
 
     const listText = tokens.map((t, i) => `${i + 1}. ${t.slice(0, 20)}...${t.slice(-6)}`).join('\n');
-    await message.channel.send(`\`\`\`ansi\n\x1b[36mCurrent tokens:\n${listText}\x1b[0m\`\`\``);
+    await message.channel.send(`\`\`\`ansi\n\x1b[335mCurrent tokens:\n${listText}\x1b[0m\`\`\``);
   }
 });
 
@@ -102,7 +102,7 @@ commands.push({
     try { await message.delete(); } catch {}
 
     fs.writeFileSync(tokenFilePath, '');
-    await message.channel.send("```ansi\n\x1b[32mAll tokens have been cleared!\x1b[0m```");
+    await message.channel.send("```ansi\n\x1b[335mAll tokens have been cleared!\x1b[0m```");
   }
 });
 

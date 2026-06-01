@@ -66,7 +66,7 @@ export function setConsoleTitle(title) {
 export async function showStartupAnimation() {
   const pps = colors.lightMagenta;
   const qqq = colors.magenta;
-  const mjj = colors.red;
+  const mjj = colors.lightMagenta;
   const white = colors.white;
   const p1 = colors.lightMagenta;
 
@@ -98,7 +98,7 @@ export async function showStartupAnimation() {
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠋⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
 
   const snow = ['❄', '•', '*', '.', '·', '✧', '❆', '❅'];
-  const titles = ["@exael", "@nasa", "@exael", "@nasa"];
+  const titles = ["akashsuu", "purple-white", "akashsuu", "purple-white"];
   const barLength = 20;
   const totalIterations = 50;
 

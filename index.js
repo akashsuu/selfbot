@@ -149,11 +149,13 @@ client.once('ready', async () => {
   // Render the pretty console box UI
   const boxWidth = 35;
   const borderLine = "═".repeat(boxWidth + 2);
-  const botUser = `Welcome : ${client.user.tag.slice(0, 25).padEnd(25)}`;
-  const botPrefix = `Prefix  : .                        `;
-  const version = `Version : JS V1.1.6 Host           `;
-  const serverCount = `Servers : ${String(client.guilds.cache.size).padEnd(25)}`;
-  const friendCount = `Friends : ${String(getFriendCount(client)).padEnd(25)}`;
+  const purple = colors.lightMagenta;
+  const white = colors.white;
+  const botUser = `${white}Welcome : ${purple}${client.user.tag.slice(0, 25).padEnd(25)}`;
+  const botPrefix = `${white}Prefix  : ${purple}.                        `;
+  const version = `${white}Version : ${purple}JS V1.1.6 Host           `;
+  const serverCount = `${white}Servers : ${purple}${String(client.guilds.cache.size).padEnd(25)}`;
+  const friendCount = `${white}Friends : ${purple}${String(getFriendCount(client)).padEnd(25)}`;
 
   const mainUi = `
                                        ${colors.lightMagenta}▄   ▄▄▄▄${colors.white}                                     
@@ -165,17 +167,17 @@ client.once('ready', async () => {
                                                          ${colors.lightMagenta}██${colors.white}                          
                                                            ${colors.lightMagenta}▀${colors.white}  
 
-                                              ${colors.green}akashsuu SELFBOT (JS EDITION)${colors.white}
-                                              ${colors.green}NODE.JS CLIENT${colors.white}
-                                              ${colors.green}CREATED AND DEVELOPED BY akashsuu${colors.white}
+                                              ${purple}akashsuu SELFBOT (JS EDITION)${white}
+                                              ${purple}NODE.JS CLIENT${white}
+                                              ${purple}CREATED AND DEVELOPED BY akashsuu${white}
 
-                                            ${colors.yellow}╔${borderLine}╗
-                                            ${colors.yellow}║ ${botUser} ${colors.yellow}║
-                                            ${colors.yellow}║ ${botPrefix} ${colors.yellow}║
-                                            ${colors.yellow}║ ${version} ${colors.yellow}║
-                                            ${colors.yellow}║ ${serverCount} ${colors.yellow}║
-                                            ${colors.yellow}║ ${friendCount} ${colors.yellow}║
-                                            ${colors.yellow}╚${borderLine}╝
+                                            ${purple}╔${borderLine}╗
+                                            ${purple}║ ${botUser} ${purple}║
+                                            ${purple}║ ${botPrefix} ${purple}║
+                                            ${purple}║ ${version} ${purple}║
+                                            ${purple}║ ${serverCount} ${purple}║
+                                            ${purple}║ ${friendCount} ${purple}║
+                                            ${purple}╚${borderLine}╝${white}
   `;
   console.log(mainUi);
 });

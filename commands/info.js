@@ -38,6 +38,9 @@ function getFriendCount(client) {
 }
 
 const commands = [];
+const purpleAnsi = '\x1b[35m';
+const whiteAnsi = '\x1b[37m';
+const resetAnsi = '\x1b[0m';
 
 const helpSections = {
   tokens: {
@@ -152,42 +155,42 @@ function buildHelp(category) {
   if (key && helpSections[key]) {
     const section = helpSections[key];
     return [
-      `${section.title}`,
-      'Prefix: .',
+      `${purpleAnsi}${section.title}${whiteAnsi}`,
+      `${purpleAnsi}Prefix:${whiteAnsi} .`,
       '',
-      ...section.commands,
+      ...section.commands.map(command => `${purpleAnsi}${command.split(' - ')[0]}${whiteAnsi} - ${command.split(' - ').slice(1).join(' - ')}`),
       '',
-      'Tip: Use .help to go back to the category list.'
+      `${purpleAnsi}Tip:${whiteAnsi} Use .help to go back to the category list.${resetAnsi}`
     ].join('\n');
   }
 
   const categories = Object.entries(helpSections)
-    .map(([name, section]) => `.help ${name.padEnd(10)} - ${section.title}`)
+    .map(([name, section]) => `${purpleAnsi}.help ${name.padEnd(10)}${whiteAnsi} - ${section.title}`)
     .join('\n');
 
   return [
-    'akashsuu Selfbot Help',
-    'Prefix: .',
-    'Created and developed by akashsuu',
+    `${purpleAnsi}akashsuu Selfbot Help${whiteAnsi}`,
+    `${purpleAnsi}Prefix:${whiteAnsi} .`,
+    `${purpleAnsi}Created and developed by${whiteAnsi} akashsuu`,
     '',
-    'Main commands:',
-    '.info              - Bot status',
-    '.help <category>   - Show commands in a category',
-    '.theme             - Change help theme',
+    `${purpleAnsi}Main commands:${whiteAnsi}`,
+    `${purpleAnsi}.info${whiteAnsi}              - Bot status`,
+    `${purpleAnsi}.help <category>${whiteAnsi}   - Show commands in a category`,
+    `${purpleAnsi}.theme${whiteAnsi}             - Show purple/white theme settings`,
     '',
-    'Categories:',
+    `${purpleAnsi}Categories:${whiteAnsi}`,
     categories,
     '',
-    'Examples:',
-    '.help tokens',
-    '.help spam',
-    '.repeat start hello',
-    '.setbio hello world'
+    `${purpleAnsi}Examples:${whiteAnsi}`,
+    `${purpleAnsi}.help tokens${whiteAnsi}`,
+    `${purpleAnsi}.help spam${whiteAnsi}`,
+    `${purpleAnsi}.repeat start hello${whiteAnsi}`,
+    `${purpleAnsi}.setbio hello world${resetAnsi}`
   ].join('\n');
 }
 
 async function sendHelp(message, args = []) {
-  await message.channel.send(`\`\`\`\n${buildHelp(args[0])}\n\`\`\``);
+  await message.channel.send(`\`\`\`ansi\n${buildHelp(args[0])}\n\`\`\``);
 }
 
 // 1. INFO command
@@ -198,11 +201,10 @@ commands.push({
     const uptime = getUptime();
     
     // Resolve theme for user
-    const themeColor = userThemes[message.author.id] || 'magenta';
-    const accent = colors[themeColor] || colors.magenta;
+    const accent = colors.lightMagenta;
     const reset = colors.reset;
     const white = colors.white;
-    const yellow = colors.yellow;
+    const purple = colors.lightMagenta;
     
     const botUser = `Welcome : ${client.user.tag.slice(0, 25).padEnd(25)}`;
     const botPrefix = `Prefix  : .                        `;
@@ -216,18 +218,18 @@ commands.push({
     const borderLine = "═".repeat(boxWidth + 2);
     
     await message.channel.send(`\`\`\`ansi
-                                            ${yellow}╔═╗╔═╗╔═╗ ╦ ╦╔═╗╔╦╗╔╦╗╔═╗  ╔═╗╔═╗╦  ╔═╗╔╗ ╔═╗╔╦╗
-                                            ${yellow}║  ║ ║║═╬╗║ ║║╣  ║  ║ ║╣   ╚═╗║╣ ║  ╠╣ ╠╩╗║ ║ ║ 
-                                             ${white}╚═╝╚═╝╚═╝╚╚═╝╚═╝ ╩  ╩ ╚═╝  ╚═╝╚═╝╩═╝╚  ╚═╝╚═╝ ╩  ${colors.red}Created and developed by ${colors.cyan}akashsuu
-                                            ${yellow}╔${borderLine}╗
-                                            ${yellow}║ ${white}Welcome : ${accent}${client.user.tag.slice(0,25).padEnd(25)} ${yellow}║
-                                            ${yellow}║ ${white}Prefix  : ${accent}.${"".padEnd(24)} ${yellow}║
-                                            ${yellow}║ ${white}Version : ${accent}JS Dev${"".padEnd(19)} ${yellow}║
-                                            ${yellow}║ ${white}Servers : ${accent}${String(client.guilds.cache.size).padEnd(25)} ${yellow}║
-                                            ${yellow}║ ${white}Friends : ${accent}${String(getFriendCount(client)).padEnd(25)} ${yellow}║
-                                            ${yellow}║ ${white}Tokens  : ${accent}${String(tokens.length).padEnd(25)} ${yellow}║  
-                                            ${yellow}║ ${white}Uptime  : ${accent}${uptime.padEnd(25)} ${yellow}║
-                                            ${yellow}╚${borderLine}╝
+                                            ${purple}╔═╗╔═╗╔═╗ ╦ ╦╔═╗╔╦╗╔╦╗╔═╗  ╔═╗╔═╗╦  ╔═╗╔╗ ╔═╗╔╦╗
+                                            ${purple}║  ║ ║║═╬╗║ ║║╣  ║  ║ ║╣   ╚═╗║╣ ║  ╠╣ ╠╩╗║ ║ ║ 
+                                             ${white}╚═╝╚═╝╚═╝╚╚═╝╚═╝ ╩  ╩ ╚═╝  ╚═╝╚═╝╩═╝╚  ╚═╝╚═╝ ╩  ${purple}Created and developed by ${white}akashsuu
+                                            ${purple}╔${borderLine}╗
+                                            ${purple}║ ${white}Welcome : ${accent}${client.user.tag.slice(0,25).padEnd(25)} ${purple}║
+                                            ${purple}║ ${white}Prefix  : ${accent}.${"".padEnd(24)} ${purple}║
+                                            ${purple}║ ${white}Version : ${accent}JS Dev${"".padEnd(19)} ${purple}║
+                                            ${purple}║ ${white}Servers : ${accent}${String(client.guilds.cache.size).padEnd(25)} ${purple}║
+                                            ${purple}║ ${white}Friends : ${accent}${String(getFriendCount(client)).padEnd(25)} ${purple}║
+                                            ${purple}║ ${white}Tokens  : ${accent}${String(tokens.length).padEnd(25)} ${purple}║  
+                                            ${purple}║ ${white}Uptime  : ${accent}${uptime.padEnd(25)} ${purple}║
+                                            ${purple}╚${borderLine}╝
     ${reset}\`\`\``);
   }
 });
@@ -261,7 +263,7 @@ commands.push({
 commands.push({
   name: 'theme',
   execute: async (message, args, client) => {
-    const currentTheme = userThemes[message.author.id] || 'magenta';
+    const currentTheme = 'purple-white';
     let pageNum = 't1';
     
     const renderPage = (p) => {
@@ -288,7 +290,7 @@ commands.push({
         const parts = msg.content.split(' ');
         if (parts.length >= 2) {
           const selectedColor = parts[1].toLowerCase();
-          const validColors = ['red', 'blue', 'magenta', 'cyan', 'green', 'yellow', 'purple'];
+          const validColors = ['purple', 'white', 'purple-white'];
           if (validColors.includes(selectedColor)) {
             userThemes[message.author.id] = selectedColor;
             saveThemes();
@@ -333,7 +335,7 @@ for (let i = 1; i <= 7; i++) {
   commands.push({
     name: `t${i}`,
     execute: async (message, args, client) => {
-      const currentTheme = userThemes[message.author.id] || 'magenta';
+      const currentTheme = 'purple-white';
       const pageContent = helpPages[`t${i}`];
       if (pageContent) {
         const rendered = pageContent.replace('{current_theme}', currentTheme);
