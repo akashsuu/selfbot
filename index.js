@@ -158,14 +158,12 @@ client.once('ready', async () => {
   const friendCount = `${white}Friends : ${purple}${String(getFriendCount(client)).padEnd(25)}`;
 
   const mainUi = `
-                                       ${colors.lightMagenta}▄   ▄▄▄▄${colors.white}                                     
-                                       ${colors.lightMagenta}▀██████▀                         █▄  █▄${colors.white}      
-                                         ${colors.lightMagenta}██                            ▄██▄▄██▄${colors.white}      
-                                         ${colors.lightMagenta}██     ▄███▄ ▄████ ██ ██ ▄█▀█▄ ██  ██ ▄█▀█▄${colors.white} 
-                                        ${colors.lightMagenta} ██     ██ ██ ██ ██ ██ ██ ██▄█▀ ██  ██ ██▄█▀${colors.white} 
-                                         ${colors.lightMagenta}▀█████▄▀███▀▄▀████▄▀██▀█▄▀█▄▄▄▄██ ▄██▄▀█▄▄▄${colors.white} 
-                                                         ${colors.lightMagenta}██${colors.white}                          
-                                                           ${colors.lightMagenta}▀${colors.white}  
+                 ${purple} █████╗ ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██╗   ██╗██╗   ██╗${white}
+                 ${purple}██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██║  ██║██╔════╝██║   ██║██║   ██║${white}
+                 ${purple}███████║█████╔╝ ███████║███████╗███████║███████╗██║   ██║██║   ██║${white}
+                 ${purple}██╔══██║██╔═██╗ ██╔══██║╚════██║██╔══██║╚════██║██║   ██║██║   ██║${white}
+                 ${purple}██║  ██║██║  ██╗██║  ██║███████║██║  ██║███████║╚██████╔╝╚██████╔╝${white}
+                 ${purple}╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝ ${white}
 
                                               ${purple}akashsuu SELFBOT (JS EDITION)${white}
                                               ${purple}NODE.JS CLIENT${white}
