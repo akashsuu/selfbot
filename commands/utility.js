@@ -14,7 +14,7 @@ commands.push({
   name: 'say',
   execute: async (message, args, client) => {
     if (args.length === 0) {
-      return message.channel.send("```Usage: .say <message> OR .say <token_index> <message>```");
+      return message.channel.send("```Command: .say <message> OR .say <token_index> <message>```");
     }
 
     const tokens = loadTokens();
@@ -204,7 +204,7 @@ commands.push({
   name: 'roblox',
   execute: async (message, args, client) => {
     const username = args[0];
-    if (!username) return message.channel.send("```Usage: .roblox <username>```");
+    if (!username) return message.channel.send("```Command: .roblox <username>```");
     
     try {
       // Fetch user ID from username

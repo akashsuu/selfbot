@@ -34,7 +34,7 @@ commands.push({
       const trigger = args[1];
       const reaction = args[2];
       if (!trigger || !reaction) {
-        return message.channel.send("```Usage: .ronmessage add <message> <reaction>```");
+        return message.channel.send("```Command: .ronmessage add <message> <reaction>```");
       }
       ronData[trigger] = { reaction, enabled: true };
       saveData(ronPath, ronData);
@@ -74,7 +74,7 @@ commands.push({
     else {
       await message.channel.send(`\`\`\`ansi
 [ ronmessage ] automatic reactions to messages.
-    Usage:
+    Command:
         ronmessage add <message> <reaction> - Add reaction to message
         ronmessage list                     - List all reaction messages
         ronmessage remove <message>          - Remove reaction from message
@@ -97,7 +97,7 @@ commands.push({
       const trigger = args[1];
       const response = args.slice(2).join(' ');
       if (!trigger || !response) {
-        return message.channel.send("```Usage: .sonmessage add <message> <response>```");
+        return message.channel.send("```Command: .sonmessage add <message> <response>```");
       }
       sonData[trigger] = { response, enabled: true };
       saveData(sonPath, sonData);
@@ -137,7 +137,7 @@ commands.push({
     else {
       await message.channel.send(`\`\`\`ansi
 [ sonmessage ] Automatic responses to messages.
-    Usage:
+    Command:
         sonmessage add <message> <response> - Add response to message
         sonmessage list                     - List all response messages
         sonmessage remove <message>          - Remove response from message
@@ -159,7 +159,7 @@ commands.push({
       const trigger = args[1];
       const editVal = args.slice(2).join(' ');
       if (!trigger || !editVal) {
-        return message.channel.send("```Usage: .eonmessage add <message> <edited_message>```");
+        return message.channel.send("```Command: .eonmessage add <message> <edited_message>```");
       }
       eonData[trigger] = { edited_message: editVal, enabled: true };
       saveData(eonPath, eonData);
@@ -199,7 +199,7 @@ commands.push({
     else {
       await message.channel.send(`\`\`\`ansi
 [ eonmessage ] automatic message editing.
-    Usage:
+    Command:
         eonmessage add <message> <edited_message> - Add edit mapping
         eonmessage list                           - List all edit messages
         eonmessage remove <message>                - Remove edit mapping

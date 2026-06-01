@@ -44,7 +44,7 @@ commands.push({
   execute: async (message, args, client) => {
     const channelId = args[0];
     if (!channelId) {
-      return message.channel.send("```Usage: .vcmulti <channel_id>```");
+      return message.channel.send("```Command: .vcmulti <channel_id>```");
     }
 
     const channel = client.channels.cache.get(channelId);
@@ -97,7 +97,7 @@ commands.push({
     
     if (sub === 'stable' || sub === 's') {
       const channelId = args[1];
-      if (!channelId) return message.channel.send("```Usage: .vcjoin stable <channel_id>```");
+      if (!channelId) return message.channel.send("```Command: .vcjoin stable <channel_id>```");
 
       const channel = client.channels.cache.get(channelId);
       if (!isVoiceChannel(channel)) {

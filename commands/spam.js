@@ -273,7 +273,7 @@ commands.push({
     const sub = args[0]?.toLowerCase();
     if (sub === 'start') {
       const content = args.slice(1).join(' ');
-      if (!content) return message.channel.send("```Usage: .repeat start <message>```");
+      if (!content) return message.channel.send("```Command: .repeat start <message>```");
       
       if (activeLoops.repeat) clearInterval(activeLoops.repeat);
       
@@ -371,7 +371,7 @@ commands.push({
       await message.channel.send("```Reset ladder messages to default values.```");
     }
     else {
-      await message.channel.send("```Usage: .ladder <start/stop/add/remove/clear/list/delay/reset>```");
+      await message.channel.send("```Command: .ladder <start/stop/add/remove/clear/list/delay/reset>```");
     }
   }
 });
@@ -422,7 +422,7 @@ commands.push({
     };
 
     if (!choice || !Object.keys(houses).includes(choice)) {
-      return message.channel.send("```Usage: .hypesquad <bravery/brilliance/balance/off>```");
+      return message.channel.send("```Command: .hypesquad <bravery/brilliance/balance/off>```");
     }
 
     try {

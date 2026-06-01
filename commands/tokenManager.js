@@ -13,7 +13,7 @@ commands.push({
   execute: async (message, args, client) => {
     const rawToken = args[0]?.trim();
     if (!rawToken) {
-      return message.channel.send("```Usage: .addtoken <token>```");
+      return message.channel.send("```Command: .addtoken <token>```");
     }
 
     // Delete message to hide token if permissions allow
@@ -41,7 +41,7 @@ commands.push({
   name: 'removetoken',
   execute: async (message, args, client) => {
     const rawToken = args[0]?.trim();
-    if (!rawToken) return message.channel.send("```Usage: .removetoken <token>```");
+    if (!rawToken) return message.channel.send("```Command: .removetoken <token>```");
 
     try { await message.delete(); } catch {}
 
@@ -87,7 +87,7 @@ commands.push({
     }[sub];
 
     if (!targetName) {
-      return message.channel.send("```Usage: .token add/remove/list/clear```");
+      return message.channel.send("```Command: .token add/remove/list/clear```");
     }
 
     const target = commands.find(command => command.name === targetName);
@@ -114,7 +114,7 @@ commands.push({
     const rawCount = parseInt(args[1]);
 
     if (!inviteLink || isNaN(rawCount) || rawCount <= 0) {
-      return message.channel.send("```Usage: .tjoin <invite_link> <token_count>```");
+      return message.channel.send("```Command: .tjoin <invite_link> <token_count>```");
     }
 
     const inviteCode = inviteLink.split('/').pop();

@@ -159,8 +159,7 @@ function buildHelp(category) {
       `${purpleAnsi}Prefix:${whiteAnsi} .`,
       '',
       ...section.commands.map(command => `${purpleAnsi}${command.split(' - ')[0]}${whiteAnsi} - ${command.split(' - ').slice(1).join(' - ')}`),
-      '',
-      `${purpleAnsi}Tip:${whiteAnsi} Use .help to go back to the category list.${resetAnsi}`
+      resetAnsi
     ].join('\n');
   }
 
@@ -180,12 +179,7 @@ function buildHelp(category) {
     '',
     `${purpleAnsi}Categories:${whiteAnsi}`,
     categories,
-    '',
-    `${purpleAnsi}Examples:${whiteAnsi}`,
-    `${purpleAnsi}.help tokens${whiteAnsi}`,
-    `${purpleAnsi}.help spam${whiteAnsi}`,
-    `${purpleAnsi}.repeat start hello${whiteAnsi}`,
-    `${purpleAnsi}.setbio hello world${resetAnsi}`
+    resetAnsi
   ].join('\n');
 }
 

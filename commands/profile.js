@@ -16,7 +16,7 @@ commands.push({
   name: 'setname',
   execute: async (message, args, client) => {
     const name = args.join(' ');
-    if (!name) return message.channel.send("```Usage: .setname <name>```");
+    if (!name) return message.channel.send("```Command: .setname <name>```");
     try {
       await client.user.setUsername(name); // changes display name/username
       await message.channel.send(`\`\`\`Display name changed to: ${name}\`\`\``);
@@ -30,7 +30,7 @@ commands.push({
   name: 'setpfp',
   execute: async (message, args, client) => {
     const url = args[0] || message.attachments.first()?.url;
-    if (!url) return message.channel.send("```Usage: .setpfp <url_or_attachment>```");
+    if (!url) return message.channel.send("```Command: .setpfp <url_or_attachment>```");
     try {
       await client.user.setAvatar(url);
       await message.channel.send("```Avatar set successfully!```");
@@ -44,7 +44,7 @@ commands.push({
   name: 'setbanner',
   execute: async (message, args, client) => {
     const url = args[0] || message.attachments.first()?.url;
-    if (!url) return message.channel.send("```Usage: .setbanner <url_or_attachment>```");
+    if (!url) return message.channel.send("```Command: .setbanner <url_or_attachment>```");
     try {
       await client.user.setBanner(url);
       await message.channel.send("```Banner set successfully!```");
@@ -191,7 +191,7 @@ commands.push({
   aliases: ['rotate_status'],
   execute: async (message, args, client) => {
     const rawStatuses = args.join(' ');
-    if (!rawStatuses) return message.channel.send("```Usage: .rstatus status1 | status2 | status3```");
+    if (!rawStatuses) return message.channel.send("```Command: .rstatus status1 | status2 | status3```");
 
     const list = rawStatuses.split('|').map(s => s.trim());
     if (rotations.status) clearInterval(rotations.status);
@@ -232,7 +232,7 @@ commands.push({
   name: 'rotatebio',
   execute: async (message, args, client) => {
     const rawBios = args.join(' ');
-    if (!rawBios) return message.channel.send("```Usage: .rotatebio bio1 | bio2 | bio3```");
+    if (!rawBios) return message.channel.send("```Command: .rotatebio bio1 | bio2 | bio3```");
 
     const list = rawBios.split('|').map(b => b.trim());
     if (rotations.bio) clearInterval(rotations.bio);
@@ -269,7 +269,7 @@ commands.push({
   name: 'rotatepronoun',
   execute: async (message, args, client) => {
     const rawPronouns = args.join(' ');
-    if (!rawPronouns) return message.channel.send("```Usage: .rotatepronoun pr1 | pr2```");
+    if (!rawPronouns) return message.channel.send("```Command: .rotatepronoun pr1 | pr2```");
 
     const list = rawPronouns.split('|').map(p => p.trim());
     if (rotations.pronouns) clearInterval(rotations.pronouns);
