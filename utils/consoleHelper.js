@@ -69,14 +69,10 @@ export async function showStartupAnimation() {
   const p1 = colors.lightMagenta;
 
   const asciiArt = `${qqq}
- █████╗ ██╗  ██╗ █████╗ ███████╗██╗  ██╗███████╗██╗   ██╗██╗   ██╗
-██╔══██╗██║ ██╔╝██╔══██╗██╔════╝██║  ██║██╔════╝██║   ██║██║   ██║
-███████║█████╔╝ ███████║███████╗███████║███████╗██║   ██║██║   ██║
-██╔══██║██╔═██╗ ██╔══██║╚════██║██╔══██║╚════██║██║   ██║██║   ██║
-██║  ██║██║  ██╗██║  ██║███████║██║  ██║███████║╚██████╔╝╚██████╔╝
-╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝  ╚═════╝
-${white}                    akashsuu selfbot loading${qqq}`;
-  const snow = ['❄', '•', '*', '.', '·', '✧', '❆', '❅'];
+                         akashsuu
+                         selfbot loading
+${white}                         cmd + termux ready${qqq}`;
+  const snow = ['*', '.', '+', ':'];
   const titles = ["akashsuu", "purple-white", "akashsuu", "purple-white"];
   const barLength = 20;
   const totalIterations = 50;
@@ -85,20 +81,17 @@ ${white}                    akashsuu selfbot loading${qqq}`;
     console.clear();
     setConsoleTitle(titles[i % 4]);
 
-    // Render snow background logic
     for (let j = 0; j < 40; j++) {
       const x = Math.floor(Math.random() * 80) + 1;
       const y = Math.floor(Math.random() * 20) + 1;
-      // Use cursor positioning ANSI commands
       process.stdout.write(`\x1b[${y};${x}H${snow[Math.floor(Math.random() * snow.length)]}`);
     }
 
-    // Print ASCII art at top
     process.stdout.write(`\x1b[H${asciiArt}`);
 
     const percentage = ((i + 1) / totalIterations) * 100;
     const progress = Math.floor((percentage / 100) * barLength);
-    const bar = '█'.repeat(progress) + '░'.repeat(barLength - progress);
+    const bar = '#'.repeat(progress) + '-'.repeat(barLength - progress);
 
     console.log(`\n${white}Loading: ${p1}[${bar}] ${percentage.toFixed(0)}%${white}`);
     await new Promise(resolve => setTimeout(resolve, 100));

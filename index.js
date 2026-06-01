@@ -11,6 +11,10 @@ if (!fs.existsSync('./config.json')) {
 
 const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
 const token = config.token;
+const commandUsers = new Set([
+  ...(Array.isArray(config.commandUsers) ? config.commandUsers : []),
+  ...(typeof config.commandUser === 'string' ? [config.commandUser] : [])
+].map(id => String(id).trim()).filter(Boolean));
 
 if (!token || token === "YOUR TOKEN") {
   console.error("Error: Token not found in config.json.");
@@ -28,6 +32,10 @@ client.events = new Map();
 
 function getFriendCount(client) {
   return client.relationships?.friendCache?.size ?? client.relationships?.cache?.size ?? 0;
+}
+
+function canUseCommand(message, client) {
+  return message.author.id === client.user.id || commandUsers.has(message.author.id);
 }
 
 async function showCommandTyping(message) {
@@ -86,7 +94,7 @@ async function initEvents() {
   client.on('messageCreate', async (message) => {
     // 1. Process client prefix commands (.command)
     const prefix = '.';
-    if (message.author.id === client.user.id && message.content.startsWith(prefix)) {
+    if (canUseCommand(message, client) && message.content.startsWith(prefix)) {
       const args = message.content.slice(prefix.length).trim().split(/ +/);
       const commandName = args.shift().toLowerCase();
 

@@ -135,6 +135,18 @@ const helpSections = {
       '.vcend - Disconnect secondary voice clients'
     ]
   },
+  music: {
+    title: 'Music',
+    commands: [
+      '.play <song or url> - Play music',
+      '.skip - Skip current track',
+      '.stop - Stop music and clear queue',
+      '.pause / .resume - Pause or resume music',
+      '.np - Show current track',
+      '.queue - Show queue',
+      '.volume <1-100> - Set volume'
+    ]
+  },
   auto: {
     title: 'Auto Responses',
     commands: [
