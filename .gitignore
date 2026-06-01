@@ -1,0 +1,14 @@
+node_modules/
+
+# Local credentials and runtime state
+config.json
+token.txt
+*_data.json
+themes.json
+message_id.json
+
+# Local/generated caches
+*.log
+.env
+.DS_Store
+Thumbs.db
