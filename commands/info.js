@@ -67,7 +67,7 @@ commands.push({
     await message.channel.send(`\`\`\`ansi
                                             ${yellow}╔═╗╔═╗╔═╗ ╦ ╦╔═╗╔╦╗╔╦╗╔═╗  ╔═╗╔═╗╦  ╔═╗╔╗ ╔═╗╔╦╗
                                             ${yellow}║  ║ ║║═╬╗║ ║║╣  ║  ║ ║╣   ╚═╗║╣ ║  ╠╣ ╠╩╗║ ║ ║ 
-                                             ${white}╚═╝╚═╝╚═╝╚╚═╝╚═╝ ╩  ╩ ╚═╝  ╚═╝╚═╝╩═╝╚  ╚═╝╚═╝ ╩  ${colors.red}By exaell. ${colors.cyan}/${colors.red} nasa
+                                             ${white}╚═╝╚═╝╚═╝╚╚═╝╚═╝ ╩  ╩ ╚═╝  ╚═╝╚═╝╩═╝╚  ╚═╝╚═╝ ╩  ${colors.red}Created and developed by ${colors.cyan}akashsuu
                                             ${yellow}╔${borderLine}╗
                                             ${yellow}║ ${white}Welcome : ${accent}${client.user.tag.slice(0,25).padEnd(25)} ${yellow}║
                                             ${yellow}║ ${white}Prefix  : ${accent}.${"".padEnd(24)} ${yellow}║
@@ -95,6 +95,7 @@ commands.push({
     await message.channel.send(`\`\`\`ansi
 ${blue}────────────Dont RUN────────────
 ${red}akashsuu ${blue}Selfbot JS.
+${red}Created and developed by ${blue}akashsuu
 ${blue}────────────Dont RUN────────────
 
 ${magenta}[ ${white}.p1 ${magenta}] ${white}Multi Token Management & Autoresponse
@@ -125,6 +126,7 @@ commands.push({
     await message.channel.send(`\`\`\`ansi
 ${blue}────────────Dont RUN────────────
 ${red}akashsuu ${blue}Selfbot JS.
+${red}Created and developed by ${blue}akashsuu
 ${blue}────────────Dont RUN────────────
 
 ${magenta}[ ${white}.p11 ${magenta}] ${white}Message control and Nuking
@@ -155,6 +157,7 @@ commands.push({
     await message.channel.send(`\`\`\`ansi
 ${blue}────────────Dont RUN────────────
 ${red}akashsuu ${blue}Selfbot JS.
+${red}Created and developed by ${blue}akashsuu
 ${blue}────────────Dont RUN────────────
 ${magenta}[ ${white}.p21 ${magenta}] ${white}Auto Press Commands & Auto Kill Commands
 ${blue}[ ${white}.p22 ${blue}] ${white}Manual Mode Commands & Multi Press & Random

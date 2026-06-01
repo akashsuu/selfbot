@@ -167,6 +167,7 @@ client.once('ready', async () => {
 
                                               ${colors.green}akashsuu SELFBOT (JS EDITION)${colors.white}
                                               ${colors.green}NODE.JS CLIENT${colors.white}
+                                              ${colors.green}CREATED AND DEVELOPED BY akashsuu${colors.white}
 
                                             ${colors.yellow}╔${borderLine}╗
                                             ${colors.yellow}║ ${botUser} ${colors.yellow}║
