@@ -13,6 +13,11 @@ Windows CMD:
 
 Android Termux:
 `pkg install nodejs`
+`cd ~`
+`cp -r /storage/emulated/0/Download/selfbot ~/selfbot`
+`cd ~/selfbot`
+`rm -rf node_modules`
+`npm install --no-bin-links`
 `sh start.sh`
 
 Any terminal:
